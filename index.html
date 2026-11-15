@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>あと1ミリ</title>
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="cover" class="cover">
+      <article class="paper">
+        <div class="paper-head">
+          <p>実技試験　第1回</p>
+          <p class="seal">公平</p>
+        </div>
+        <h1>あと1ミリ</h1>
+        <p class="lead">合格は、あなたの操作だけで決まります。</p>
+        <ol class="rules">
+          <li>ジャンプの高さは一定です。</li>
+          <li>セーブは自動で、正確です。</li>
+          <li>表示されたゴールが終点です。</li>
+          <li>制限時間はありません。</li>
+        </ol>
+        <p id="cover-record" class="record"></p>
+        <div class="actions">
+          <button type="button" id="start" class="primary">受験する</button>
+          <button type="button" id="cover-retest" hidden>評価を取りにいく</button>
+          <button type="button" id="cover-wipe" class="quiet" hidden>記録を破棄する</button>
+        </div>
+        <p class="fine">歩く：← → または A D　跳ぶ：スペース、↑、Z、または画面を押す</p>
+      </article>
+    </div>
+
+    <div id="result" class="cover" hidden>
+      <article class="paper">
+        <p class="kicker">採点結果</p>
+        <h1>合格</h1>
+        <p id="result-grade" class="grade">評価 C</p>
+        <p id="result-line" class="lead"></p>
+        <dl id="result-stats" class="result-stats"></dl>
+        <div class="actions">
+          <button type="button" id="result-retest" class="primary">評価を取りにいく</button>
+          <button type="button" id="result-cover">表紙に戻る</button>
+        </div>
+        <p class="fine">再試験の問題は同一です。合格そのものは、もう動きません。</p>
+      </article>
+    </div>
+
+    <div id="desk" hidden>
+      <article id="sheet">
+        <header>
+          <div>
+            <p class="kicker">実技試験</p>
+            <h1>あと1ミリ</h1>
+          </div>
+          <p id="q-label">第1問</p>
+          <dl class="stats">
+            <div><dt>死亡</dt><dd id="stat-deaths">0</dd></div>
+            <div><dt>通算</dt><dd id="stat-total">0</dd></div>
+            <div><dt>到達</dt><dd id="stat-reach">0%</dd></div>
+            <div><dt>自己最高</dt><dd id="stat-best">—</dd></div>
+            <div>
+              <dt>平静</dt>
+              <dd class="calm">
+                <span class="meter"><span id="calm-bar"></span></span>
+                <span id="stat-calm">100</span>
+              </dd>
+            </div>
+            <div><dt>経過</dt><dd id="stat-time">0:00</dd></div>
+          </dl>
+        </header>
+        <div id="layout">
+          <div id="stage">
+            <canvas id="game" width="860" height="480" aria-label="試験の実技"></canvas>
+          </div>
+          <aside id="memo">
+            <h2>採点メモ</h2>
+            <ol id="notes"></ol>
+          </aside>
+        </div>
+        <div id="quit-bar" hidden>
+          <p>棄権すると表紙に戻ります。死亡数は残ります。</p>
+          <button type="button" id="quit-yes">棄権する</button>
+          <button type="button" id="quit-no">受験を続ける</button>
+        </div>
+        <footer>
+          <div class="pad">
+            <button type="button" id="btn-left">左</button>
+            <button type="button" id="btn-right">右</button>
+            <button type="button" id="btn-jump">ジャンプ</button>
+          </div>
+          <p class="fine">← → で歩く。スペースで跳ぶ。落ちたら、もう一度スペース。</p>
+          <button type="button" id="btn-mute">音を消す</button>
+          <button type="button" id="btn-quit">棄権する</button>
+        </footer>
+      </article>
+    </div>
+    <p id="live" class="sr" aria-live="polite"></p>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
